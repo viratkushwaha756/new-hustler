@@ -1,0 +1,296 @@
+/* ============================================
+   RESPONSIVE UTILITIES & MEDIA QUERIES
+   ============================================ */
+
+/* Display Utilities */
+.d-none { display: none !important; }
+.d-block { display: block !important; }
+.d-flex { display: flex !important; }
+.d-grid { display: grid !important; }
+
+/* Responsive Display */
+@media (max-width: 767px) {
+    .d-sm-none { display: none !important; }
+    .d-sm-block { display: block !important; }
+    .d-sm-flex { display: flex !important; }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .d-md-none { display: none !important; }
+    .d-md-block { display: block !important; }
+    .d-md-flex { display: flex !important; }
+}
+
+@media (min-width: 992px) {
+    .d-lg-none { display: none !important; }
+    .d-lg-block { display: block !important; }
+    .d-lg-flex { display: flex !important; }
+}
+
+/* Text Alignment */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+@media (max-width: 767px) {
+    .text-sm-center { text-align: center; }
+    .text-sm-left { text-align: left; }
+}
+
+/* Flex Utilities */
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+/* Gap Utilities */
+.gap-1 { gap: var(--spacing-xs); }
+.gap-2 { gap: var(--spacing-sm); }
+.gap-3 { gap: var(--spacing-md); }
+.gap-4 { gap: var(--spacing-lg); }
+
+/* Width Utilities */
+.w-100 { width: 100%; }
+.w-75 { width: 75%; }
+.w-50 { width: 50%; }
+.w-25 { width: 25%; }
+
+/* Max Width */
+.max-w-sm { max-width: 576px; }
+.max-w-md { max-width: 768px; }
+.max-w-lg { max-width: 992px; }
+.max-w-xl { max-width: 1200px; }
+
+/* Spacing Utilities */
+.m-0 { margin: 0; }
+.m-auto { margin: auto; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.my-auto { margin-top: auto; margin-bottom: auto; }
+
+.p-0 { padding: 0; }
+
+/* Visibility */
+.visible { visibility: visible; }
+.invisible { visibility: hidden; }
+.opacity-0 { opacity: 0; }
+.opacity-50 { opacity: 0.5; }
+.opacity-100 { opacity: 1; }
+
+/* Overflow */
+.overflow-hidden { overflow: hidden; }
+.overflow-auto { overflow: auto; }
+.overflow-scroll { overflow: scroll; }
+
+/* Position */
+.position-relative { position: relative; }
+.position-absolute { position: absolute; }
+.position-fixed { position: fixed; }
+.position-sticky { position: sticky; }
+
+/* Z-Index */
+.z-0 { z-index: 0; }
+.z-10 { z-index: 10; }
+.z-20 { z-index: 20; }
+.z-50 { z-index: 50; }
+
+/* Border Radius */
+.rounded-none { border-radius: 0; }
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-full { border-radius: 9999px; }
+
+/* Shadows */
+.shadow-none { box-shadow: none; }
+.shadow-sm { box-shadow: var(--shadow-soft); }
+.shadow-md { box-shadow: var(--shadow-medium); }
+.shadow-lg { box-shadow: var(--shadow-strong); }
+
+/* ============================================
+   CONTAINER RESPONSIVE SIZES
+   ============================================ */
+
+@media (max-width: 575px) {
+    .container {
+        max-width: 100%;
+        padding: 0 var(--spacing-sm);
+    }
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+/* ============================================
+   MOBILE-SPECIFIC FIXES
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* Prevent horizontal scroll */
+    body {
+        overflow-x: hidden;
+    }
+
+    /* Better touch targets */
+    button,
+    a {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Stack buttons vertically on mobile */
+    .btn-group {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn-group .btn {
+        width: 100%;
+        margin-bottom: var(--spacing-xs);
+    }
+
+    /* Smaller font sizes for mobile */
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.5rem; }
+    h4 { font-size: 1.25rem; }
+
+    /* Reduce padding on mobile */
+    section {
+        padding: var(--spacing-xl) 0;
+    }
+
+    /* Mobile-friendly cards */
+    .card {
+        margin-bottom: var(--spacing-md);
+    }
+
+    /* Hide desktop-only content */
+    .desktop-only {
+        display: none !important;
+    }
+}
+
+/* Tablet-specific */
+@media (min-width: 768px) and (max-width: 991px) {
+    .tablet-hide {
+        display: none !important;
+    }
+}
+
+/* Desktop-specific */
+@media (min-width: 992px) {
+    .mobile-only {
+        display: none !important;
+    }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+    /* Hide non-essential elements when printing */
+    nav,
+    .footer,
+    .back-to-top,
+    .mobile-menu-toggle,
+    .scroll-indicator {
+        display: none !important;
+    }
+
+    /* Optimize for print */
+    * {
+        background: white !important;
+        color: black !important;
+        box-shadow: none !important;
+    }
+
+    a {
+        text-decoration: underline;
+    }
+
+    /* Page breaks */
+    section {
+        page-break-inside: avoid;
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY IMPROVEMENTS
+   ============================================ */
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+    outline: 3px solid var(--accent-teal);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/* Skip to main content link */
+.skip-to-main {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--accent-teal);
+    color: white;
+    padding: 10px 20px;
+    z-index: 9999;
+    transition: top 0.3s;
+}
+
+.skip-to-main:focus {
+    top: 0;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    * {
+        border-width: 2px;
+    }
+
+    .btn {
+        border: 2px solid currentColor;
+    }
+}

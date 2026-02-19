@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core Services | HustlersConnect – Complete Growth Infrastructure</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== COLOR PALETTE (exact match with index.html) ===== */
+        :root {
+            --bg-main: #F3EDE4;
+            --bg-soft: #E9E1D6;
+            --card-bg: #F7F3EC;
+            --primary-brown: #5B3A29;
+            --primary-dark: #3E281C;
+            --accent-teal: #2EC4C7;
+            --text-muted: #7B7B7B;
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 15px 40px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 70% 60%, #DCEBEA 0%, var(--bg-main) 60%);
+            color: var(--primary-brown);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* ===== NAVBAR (identical to index) ===== */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: rgba(243, 237, 228, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(91, 58, 41, 0.1);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-brown);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--primary-brown);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-teal);
+        }
+
+        .nav-links a.active {
+            font-weight: 600;
+        }
+
+        /* ===== BUTTON STYLES (exact from index) ===== */
+        .btn {
+            background: var(--primary-brown);
+            color: white;
+            padding: 12px 26px;
+            border-radius: 40px;
+            text-decoration: none;
+            box-shadow: var(--shadow-soft);
+            font-weight: 600;
+            display: inline-block;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-teal {
+            background: var(--primary-dark);
+        }
+        .btn-teal:hover {
+            background: #25a8aa;
+        }
+
+        /* ===== TYPOGRAPHY & SECTION TITLES ===== */
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .service-hero {
+            text-align: center;
+            padding: 180px 20px 100px;
+           
+        }
+
+        .service-hero h1 {
+            font-size: 72px;
+            max-width: 1000px;
+            margin: 0 auto 30px;
+            line-height: 1.1;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .service-hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            color: var(--text-muted);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            min-width: 150px;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--accent-teal);
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        /* ===== SERVICES CATEGORY STYLING WITH IMAGES ===== */
+        .services-section {
+            padding: 100px 0;
+            background: var(--bg-soft);
+        }
+
+        .services-section:nth-child(even) {
+            background: var(--bg-main);
+        }
+
+        .category-header-large {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .category-header-large h2 {
+            font-size: 48px;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+        }
+
+        .category-header-large h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent-teal);
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(91, 58, 41, 0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .service-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--accent-teal);
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-card-image {
+            transform: scale(1.02);
+        }
+
+        .service-card-content {
+            padding: 30px 25px 35px;
+        }
+
+        .service-icon-small {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-teal);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 24px;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-icon-small {
+            transform: rotate(8deg) scale(1.05);
+            background: var(--primary-dark);
+        }
+
+        .service-card h3 {
+            font-size: 22px;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .feature-list li {
+            padding: 6px 0;
+            color: var(--primary-brown);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px dashed rgba(46, 196, 199, 0.15);
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li i {
+            color: var(--accent-teal);
+            width: 20px;
+            font-size: 14px;
+        }
+
+        /* ===== MISSION CARD ===== */
+        .mission-section {
+            background: var(--bg-main);
+            padding: 100px 0;
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .mission-card {
+            background: var(--card-bg);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+        }
+
+        .mission-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .mission-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .mission-content {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .mission-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--accent-teal);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: -70px auto 25px;
+            color: white;
+            font-size: 36px;
+            border: 4px solid var(--card-bg);
+        }
+
+        .mission-content h3 {
+            font-size: 28px;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .mission-content p {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .mission-values {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            text-align: left;
+        }
+
+        .value-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-brown);
+            font-size: 14px;
+        }
+
+        .value-item i {
+            color: var(--accent-teal);
+            font-size: 14px;
+        }
+
+        /* ===== PROCESS SECTION (identical to index) ===== */
+        .process-section {
+            padding: 100px 0;
+            background: var(--bg-soft);
+        }
+
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .process-step {
+            width: 220px;
+            text-align: center;
+            padding: 40px 25px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .step-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--accent-teal);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .process-step h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+
+        .process-step p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        @media (min-width: 768px) {
+            .process-steps:before {
+                content: '';
+                position: absolute;
+                top: 40%;
+                left: 220px;
+                right: 220px;
+                height: 2px;
+                background: rgba(46, 196, 199, 0.3);
+                z-index: 0;
+            }
+        }
+
+        /* ===== CTA CARD (exact copy of index preview card) ===== */
+        .cta-section {
+            padding: 60px 0;
+            background: var(--bg-soft);
+        }
+
+        .cta-card {
+            background: var(--card-bg);
+            border-radius: 28px;
+            padding: 60px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .cta-card h2 {
+            font-size: 42px;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .cta-card p {
+            color: var(--text-muted);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .cta-card .btn {
+            margin: 0 5px;
+        }
+
+        /* ===== CONTACT SECTION (identical to index) ===== */
+        .contact-section {
+            padding: 100px 0;
+            background: var(--bg-main);
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 60px;
+            justify-content: space-between;
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contact-info h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: var(--primary-dark);
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+
+        .contact-details {
+            margin-bottom: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            color: var(--primary-brown);
+        }
+
+        .contact-item i {
+            width: 30px;
+            color: var(--accent-teal);
+            font-size: 18px;
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .contact-form h3 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: var(--primary-dark);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(90, 60, 40, 0.7);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: #3a2a1f;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: rgba(80, 50, 30, 0.6);
+            background: rgba(255, 255, 255, 0.75);
+            box-shadow: 0 8px 25px rgba(80, 50, 30, 0.15);
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* ===== FOOTER (identical) ===== */
+        footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-teal);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .service-hero h1 { font-size: 56px; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .mission-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; }
+            .nav-links { display: none; }
+            .service-hero { padding: 140px 20px 60px; }
+            .service-hero h1 { font-size: 42px; }
+            .service-hero p { font-size: 18px; }
+            .section-title { font-size: 36px; }
+            .category-header-large h2 { font-size: 36px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .mission-values { grid-template-columns: 1fr; }
+            .contact-container { flex-direction: column; }
+            .footer-content { flex-direction: column; text-align: center; }
+            .process-steps { justify-content: center; }
+            .process-step { width: 100%; max-width: 300px; }
+        }
+
+        @media (max-width: 480px) {
+            .service-hero h1 { font-size: 32px; }
+            .hero-stats { flex-direction: column; gap: 30px; }
+            .cta-card { padding: 40px 20px; }
+            .cta-card h2 { font-size: 32px; }
+            .mission-content { padding: 30px; }
+            .mission-icon { margin-top: -60px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="index2.html" class="logo">HustlersConnect</a>
+        <div class="nav-links">
+            <a href="index2.html">Home</a>
+            <a href="service.html" class="active">Services</a>
+            <a href="testimonial.html">Testimonials</a>
+            <a href="about.html">About</a>
+            <a href="portfolio.html">Portfolio</a>
+        </div>
+        <a class="btn btn-teal" href="#contact">Contact us</a>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="service-hero">
+        <div class="container">
+            <h1 class="fade-in-up">Our Comprehensive Services</h1>
+            <p class="fade-in-up delay-1">From technical systems to monetization frameworks — we build the backend that transforms creators into sustainable business owners.</p>
+           
+            
+            <div class="hero-stats fade-in-up delay-3">
+                <div class="stat-item">
+                    <span class="stat-number">500M+</span>
+                    <span class="stat-label">Monthly Views</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4M+</span>
+                    <span class="stat-label">Followers Managed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Business Focus</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION A: Development & Technical Infrastructure -->
+    <section class="services-section">
+        <div class="container">
+            <div class="category-header-large">
+                <h2>Development & Technical Infrastructure</h2>
+                <p class="section-subtitle">The backbone of your digital business — custom systems built for scale</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in-up">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Custom Web Development">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-code"></i></div>
+                        <h3>Custom Web Development</h3>
+                        <p>High-performance websites tailored to your brand, optimized for conversions and user experience.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Responsive, mobile-first design</li>
+                            <li><i class="fas fa-check"></i> E-commerce & membership sites</li>
+                            <li><i class="fas fa-check"></i> Speed & SEO optimization</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in-up delay-1">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Business Infrastructure">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-cogs"></i></div>
+                        <h3>Business Infrastructure Setup</h3>
+                        <p>Complete operational backbone including CRM, project management, and communication systems.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> CRM & email marketing setup</li>
+                            <li><i class="fas fa-check"></i> Project management tools</li>
+                            <li><i class="fas fa-check"></i> Team collaboration systems</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in-up delay-2">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Automated Systems">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-robot"></i></div>
+                        <h3>Automated Client Onboarding</h3>
+                        <p>Streamlined systems that automate client acquisition, payments, and project kickoff.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Automated proposal & contracts</li>
+                            <li><i class="fas fa-check"></i> Payment & invoicing automation</li>
+                            <li><i class="fas fa-check"></i> Self-service client portals</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION B: Social Media & Brand Growth -->
+    <section class="services-section">
+        <div class="container">
+            <div class="category-header-large">
+                <h2>Social Media & Brand Growth</h2>
+                <p class="section-subtitle">Scale your influence with systems that generate 500M+ monthly views</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in-up">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Social Media Management">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-hashtag"></i></div>
+                        <h3>Strategic Social Media Management</h3>
+                        <p>Data-driven content strategies that build engaged communities across all platforms.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Platform-specific content calendars</li>
+                            <li><i class="fas fa-check"></i> Daily community engagement</li>
+                            <li><i class="fas fa-check"></i> Performance analytics & reporting</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in-up delay-1">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1557838923-2985c318be48?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Content Scaling">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-chart-line"></i></div>
+                        <h3>Content Scaling & Growth Strategy</h3>
+                        <p>Multiply your reach with repurposing systems and viral content frameworks.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Content repurposing engine</li>
+                            <li><i class="fas fa-check"></i> Viral hook frameworks</li>
+                            <li><i class="fas fa-check"></i> Cross-platform growth systems</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in-up delay-2">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Brand Positioning">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-star"></i></div>
+                        <h3>Brand Positioning & Personal Brand</h3>
+                        <p>Transform your presence into an authoritative, recognizable brand.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Brand voice & messaging</li>
+                            <li><i class="fas fa-check"></i> Visual identity systems</li>
+                            <li><i class="fas fa-check"></i> Thought leadership positioning</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION C: Monetization & Partnerships -->
+    <section class="services-section">
+        <div class="container">
+            <div class="category-header-large">
+                <h2>Monetization & Partnerships</h2>
+                <p class="section-subtitle">Turn influence into sustainable revenue streams</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in-up">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Brand Deal Negotiation">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-handshake"></i></div>
+                        <h3>Brand Deal Negotiation</h3>
+                        <p>Expert negotiation that maximizes your value and protects your interests.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Contract review & strategy</li>
+                            <li><i class="fas fa-check"></i> Rate card development</li>
+                            <li><i class="fas fa-check"></i> Long-term partnership structuring</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in-up delay-1">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Partnership Management">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-briefcase"></i></div>
+                        <h3>Partnership Management</h3>
+                        <p>End-to-end management of brand relationships and campaign execution.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Brand outreach & pitching</li>
+                            <li><i class="fas fa-check"></i> Campaign management</li>
+                            <li><i class="fas fa-check"></i> Performance reporting</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in-up delay-2">
+                    <img src="asset/rev.jpeg">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-coins"></i></div>
+                        <h3>Revenue System Development</h3>
+                        <p>Diverse monetization frameworks beyond brand deals — products, memberships, and more.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Digital product creation</li>
+                            <li><i class="fas fa-check"></i> Membership & subscription models</li>
+                            <li><i class="fas fa-check"></i> Affiliate & partnership systems</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION D: Creative Services -->
+    <section class="services-section">
+        <div class="container">
+            <div class="category-header-large">
+                <h2>Creative Services</h2>
+                <p class="section-subtitle">High-impact visuals that stop the scroll and drive engagement</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in-up">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Video Editing">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-video"></i></div>
+                        <h3>Professional Video Editing</h3>
+                        <p>Engaging, platform-optimized videos that maximize watch time and retention.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Reels, TikToks, Shorts editing</li>
+                            <li><i class="fas fa-check"></i> Long-form content & podcasts</li>
+                            <li><i class="fas fa-check"></i> Motion graphics & captions</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in-up delay-1">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Graphic Design">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-paint-brush"></i></div>
+                        <h3>High-Impact Graphic Design</h3>
+                        <p>Visual assets that elevate your brand across every touchpoint.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Social media graphics</li>
+                            <li><i class="fas fa-check"></i> Brand collateral & presentations</li>
+                            <li><i class="fas fa-check"></i> Thumbnails & covers</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Empty card space for grid alignment -->
+                <div class="service-card fade-in-up delay-2" style="visibility: hidden;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION E: Business Operations Management -->
+    <section class="services-section">
+        <div class="container">
+            <div class="category-header-large">
+                <h2>Business Operations Management</h2>
+                <p class="section-subtitle">Run your business like a CEO — not a freelancer</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in-up">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Backend Operations">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-tasks"></i></div>
+                        <h3>Backend Operations Handling</h3>
+                        <p>We manage the day-to-day so you can focus on creativity and growth.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Email & calendar management</li>
+                            <li><i class="fas fa-check"></i> Client communication</li>
+                            <li><i class="fas fa-check"></i> Administrative support</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in-up delay-1">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Workflow Optimization">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-rocket"></i></div>
+                        <h3>Workflow Optimization</h3>
+                        <p>Streamline your processes for maximum efficiency and output.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> SOP development</li>
+                            <li><i class="fas fa-check"></i> Automation implementation</li>
+                            <li><i class="fas fa-check"></i> Team workflow design</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in-up delay-2">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Business Structuring">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-sitemap"></i></div>
+                        <h3>Business System Structuring</h3>
+                        <p>Build the infrastructure that scales — from solo to team.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Scalable operational systems</li>
+                            <li><i class="fas fa-check"></i> Team structure & hiring plans</li>
+                            <li><i class="fas fa-check"></i> Financial & reporting systems</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: Creator to Business Owner Transformation -->
+    <section class="services-section">
+        <div class="container">
+            <div class="category-header-large">
+                <h2>Creator to Business Owner Transformation</h2>
+                <p class="section-subtitle">The complete journey from influencer to entrepreneur</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in-up">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Business Foundation">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-seedling"></i></div>
+                        <h3>Business Foundation Building</h3>
+                        <p>Real business infrastructure for creators ready to level up.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Entity structuring & legal setup</li>
+                            <li><i class="fas fa-check"></i> Financial systems & bookkeeping</li>
+                            <li><i class="fas fa-check"></i> Business strategy development</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in-up delay-1">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Brand to Business">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-exchange-alt"></i></div>
+                        <h3>Personal Brand to Scalable Business</h3>
+                        <p>Convert your influence into a sellable, scalable enterprise.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Offer & product development</li>
+                            <li><i class="fas fa-check"></i> Team & delegation systems</li>
+                            <li><i class="fas fa-check"></i> Scalable delivery models</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in-up delay-2">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Skill Development">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-brain"></i></div>
+                        <h3>Skill Development & Offer Structuring</h3>
+                        <p>Package your expertise into high-value offers.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Core offer development</li>
+                            <li><i class="fas fa-check"></i> Pricing & packaging strategy</li>
+                            <li><i class="fas fa-check"></i> Sales funnel creation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="services-grid" style="margin-top: 30px;">
+                <div class="service-card fade-in-up">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1557426272-fc759fdf7a8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Automation Systems">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-robot"></i></div>
+                        <h3>Backend Systems for Automation</h3>
+                        <p>Automate repetitive tasks so you can focus on high-impact work.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Marketing automation</li>
+                            <li><i class="fas fa-check"></i> Client delivery systems</li>
+                            <li><i class="fas fa-check"></i> Analytics & reporting dashboards</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in-up delay-1">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Business Ownership">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-crown"></i></div>
+                        <h3>Independent Business Ownership</h3>
+                        <p>Complete freedom and control over your business future.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> CEO mindset & leadership</li>
+                            <li><i class="fas fa-check"></i> Strategic decision-making</li>
+                            <li><i class="fas fa-check"></i> Long-term wealth building</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Empty card for grid alignment -->
+                <div class="service-card fade-in-up delay-2" style="visibility: hidden;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: Revenue Growth & Monetization -->
+    <section class="services-section">
+        <div class="container">
+            <div class="category-header-large">
+                <h2>Revenue Growth & Monetization</h2>
+                <p class="section-subtitle">Sustainable systems designed to maximize earnings</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in-up">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Monetization Frameworks">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-chart-pie"></i></div>
+                        <h3>Structured Monetization Frameworks</h3>
+                        <p>Clear, strategic paths to diversify and grow revenue.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Revenue stream analysis</li>
+                            <li><i class="fas fa-check"></i> High-ticket offer development</li>
+                            <li><i class="fas fa-check"></i> Passive income systems</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in-up delay-1">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sustainable Revenue">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-chart-line"></i></div>
+                        <h3>Sustainable & Scalable Revenue</h3>
+                        <p>Growth that lasts — not short-term spikes.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Recurring revenue models</li>
+                            <li><i class="fas fa-check"></i> Scalable offer delivery</li>
+                            <li><i class="fas fa-check"></i> Financial forecasting</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in-up delay-2">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Earnings Maximization">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-bullseye"></i></div>
+                        <h3>Strategic Earnings Maximization</h3>
+                        <p>Optimize every opportunity for maximum return.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Pricing optimization</li>
+                            <li><i class="fas fa-check"></i> Upsell & cross-sell strategies</li>
+                            <li><i class="fas fa-check"></i> Partnership maximization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: Expansion & Strategic Problem Solving -->
+    <section class="services-section">
+        <div class="container">
+            <div class="category-header-large">
+                <h2>Expansion & Strategic Problem Solving</h2>
+                <p class="section-subtitle">Navigate complexity and scale with clarity</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in-up">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Scaling Solutions">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-puzzle-piece"></i></div>
+                        <h3>Operational & Scaling Solutions</h3>
+                        <p>Solve the challenges that hold your business back.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Bottleneck identification</li>
+                            <li><i class="fas fa-check"></i> Scalability planning</li>
+                            <li><i class="fas fa-check"></i> Systems optimization</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in-up delay-1">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Complexity Management">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-sitemap"></i></div>
+                        <h3>Business Complexity Management</h3>
+                        <p>We handle the complexities so you can create.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Multi-project coordination</li>
+                            <li><i class="fas fa-check"></i> Vendor & partner management</li>
+                            <li><i class="fas fa-check"></i> Risk mitigation</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card fade-in-up delay-2">
+                    <img class="service-card-image" src="https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Structure & Clarity">
+                    <div class="service-card-content">
+                        <div class="service-icon-small"><i class="fas fa-lightbulb"></i></div>
+                        <h3>Structure, Clarity & Efficiency</h3>
+                        <p>Bring order to chaos with proven systems.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Process documentation</li>
+                            <li><i class="fas fa-check"></i> Decision-making frameworks</li>
+                            <li><i class="fas fa-check"></i> Performance tracking</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+           
+        </div>
+    </section>
+
+    <!-- SECTION 8: Mission & Value Proposition -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="category-header-large">
+                <h2>Our Mission & Value Proposition</h2>
+                <p class="section-subtitle">The partner you need to build a legacy business</p>
+            </div>
+            
+            <div class="mission-grid">
+                <div class="mission-card fade-in-up">
+                    <img class="mission-image" src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Scale Creators">
+                    <div class="mission-content">
+                       
+                        <h3>Scale Creators & Businesses</h3>
+                        <p>We take high-visibility creators and turn them into sustainable, scalable business owners. Your influence is the fuel — we build the engine.</p>
+                        <div class="mission-values">
+                            <div class="value-item"><i class="fas fa-check-circle"></i> 500M+ monthly views</div>
+                            <div class="value-item"><i class="fas fa-check-circle"></i> 4M+ followers managed</div>
+                            <div class="value-item"><i class="fas fa-check-circle"></i> Proven systems</div>
+                            <div class="value-item"><i class="fas fa-check-circle"></i> Measurable ROI</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mission-card fade-in-up delay-1">
+                    <img class="mission-image" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Business Infrastructure">
+                    <div class="mission-content">
+                      
+                        <h3>Long-Term Business Infrastructure</h3>
+                        <p>We don't just grow your account — we build the infrastructure for lasting business success.</p>
+                        <div class="mission-values">
+                            <div class="value-item"><i class="fas fa-check-circle"></i> Complete growth ecosystem</div>
+                            <div class="value-item"><i class="fas fa-check-circle"></i> Scalable systems</div>
+                            <div class="value-item"><i class="fas fa-check-circle"></i> Sustainable revenue</div>
+                            <div class="value-item"><i class="fas fa-check-circle"></i> Proven results</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS SECTION -->
+    <section class="process-section">
+        <div class="container">
+            <h2 class="section-title">Our Working Process</h2>
+            <p class="section-subtitle">A structured approach to ensure successful project delivery</p>
+            
+            <div class="process-steps">
+                <div class="process-step fade-in-up">
+                    <div class="step-number">01</div>
+                    <h3>Understand</h3>
+                    <p>We deep dive into your business goals, target audience, and project requirements.</p>
+                </div>
+                <div class="process-step fade-in-up delay-1">
+                    <div class="step-number">02</div>
+                    <h3>Build</h3>
+                    <p>Our team crafts your custom solution with attention to detail and excellence.</p>
+                </div>
+                <div class="process-step fade-in-up delay-2">
+                    <div class="step-number">03</div>
+                    <h3>Review</h3>
+                    <p>Collaborative feedback and refinements until you're completely satisfied.</p>
+                </div>
+                <div class="process-step fade-in-up delay-3">
+                    <div class="step-number">04</div>
+                    <h3>Launch</h3>
+                    <p>Your project goes live with ongoing support to ensure optimal performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA CARD -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <h2>Ready to build your infrastructure?</h2>
+                <p>Get a free business audit and consultation. No pressure, just clarity on what we can build together.</p>
+                <a href="contact.html" class="btn btn-teal">Start Your Free Audit</a>
+                <a href="#contact" class="btn" style="margin-left: 15px;">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <p class="section-subtitle">Tell us about your vision and we'll map out the infrastructure to get you there.</p>
+            
+            <div class="contact-container">
+                <div class="contact-info fade-in-up">
+                    <h2>Let's Build Something Legendary Together</h2>
+                    <p>Whether you need a complete business transformation or a specific system, we're here to help you achieve sustainable success.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item"><i class="fas fa-envelope"></i><span>hustlersconnectwork@gmail.com</span></div>
+                        <div class="contact-item"><i class="fas fa-phone"></i><span>+91 8830051328</span></div>
+                        <div class="contact-item"><i class="fab fa-whatsapp"></i><span>WhatsApp Chat</span></div>
+                        <div class="contact-item"><i class="fab fa-instagram"></i><span>@roshanhustler</span></div>
+                    </div>
+                    
+                    <a class="btn btn-teal" href="mailto:hustlersconnectwork@gmail.com">Email Us</a>
+                </div>
+                
+                <div class="contact-form fade-in-up delay-1">
+                    <h3>Send us a message</h3>
+                    <form id="serviceForm">
+                        <div class="form-group">
+                            <label for="name">FULL NAME</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">EMAIL ADDRESS</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">SERVICE INTEREST</label>
+                            <select id="service" name="service" required>
+                                <option value="">Select a Service</option>
+                                <option value="dev">Development & Technical Infrastructure</option>
+                                <option value="social">Social Media & Brand Growth</option>
+                                <option value="monetization">Monetization & Partnerships</option>
+                                <option value="creative">Creative Services</option>
+                                <option value="operations">Business Operations</option>
+                                <option value="transformation">Creator to Business Owner</option>
+                                <option value="multiple">Multiple Services</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">PROJECT DETAILS</label>
+                            <textarea id="message" name="message" placeholder="Tell us about your business, goals, and what you'd like to build..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-teal" style="width: 100%;">Request Consultation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="copyright">&copy; 2026 HustlersConnect. All rights reserved.</div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation setup
+            const animatedElements = document.querySelectorAll('.fade-in-up');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            });
+
+            function checkScroll() {
+                animatedElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    if (elementTop < windowHeight - 100) {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }
+                });
+            }
+
+            checkScroll();
+
+            // Navbar background on scroll
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('nav');
+                if (window.scrollY > 50) {
+                    nav.style.backgroundColor = 'rgba(243, 237, 228, 0.95)';
+                    nav.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    nav.style.backgroundColor = 'rgba(243, 237, 228, 0.9)';
+                    nav.style.boxShadow = 'none';
+                }
+                checkScroll();
+            });
+
+            // Form submission
+            document.getElementById('serviceForm')?.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                alert(`Thank you ${name}! We'll contact you at ${email} within 24 hours to discuss your infrastructure.`);
+                this.reset();
+            });
+
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+/* ============================================
+   CSS VARIABLES
+   ============================================ */
+
+:root {
+    /* Brand Colors */
+    --primary-brown: #5B3A29;
+    --primary-dark: #3E281C;
+    --accent-teal: #2EC4C7;
+    --accent-teal-light: #5DD9DB;
+    --accent-gold: #F4A261;
+    
+    /* Background Colors */
+    --bg-main: #F3EDE4;
+    --bg-soft: #E9E1D6;
+    --bg-light: #FAF7F3;
+    --card-bg: #F7F3EC;
+    
+    /* Text Colors */
+    --text-primary: #3E281C;
+    --text-secondary: #5B3A29;
+    --text-muted: #7B7B7B;
+    --text-light: #A8A8A8;
+    --text-white: #FFFFFF;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, #2EC4C7 0%, #25a8aa 100%);
+    --gradient-warm: linear-gradient(135deg, #F4A261 0%, #E76F51 100%);
+    --gradient-hero: linear-gradient(120deg, #00d4ff, #7afcff);
+    --gradient-overlay: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75));
+    
+    /* Shadows */
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 15px 40px rgba(0, 0, 0, 0.12);
+    --shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.16);
+    --shadow-glow: 0 0 30px rgba(46, 196, 199, 0.3);
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+    --radius-round: 50%;
+    
+    /* Spacing */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 40px;
+    --spacing-xl: 60px;
+    --spacing-2xl: 80px;
+    --spacing-3xl: 120px;
+    
+    /* Typography */
+    --font-display: 'Inter', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Z-Index */
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+}
+
+/* Selection Color */
+::selection {
+    background-color: var(--accent-teal);
+    color: white;
+}
+
+::-moz-selection {
+    background-color: var(--accent-teal);
+    color: white;
+}

@@ -1,0 +1,252 @@
+/* ============================================
+   AUDIENCE / WHO WE WORK WITH SECTION
+   ============================================ */
+
+.audience-section {
+    padding: var(--spacing-3xl) 0;
+    background: var(--bg-main);
+    position: relative;
+}
+
+.audience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Audience Cards */
+.audience-card {
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 40px 35px;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.audience-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transition: transform var(--transition-base);
+}
+
+.audience-card:hover::before {
+    transform: scaleX(1);
+}
+
+.audience-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-strong);
+}
+
+/* Card Variants */
+.audience-card.success {
+    border-color: rgba(46, 196, 199, 0.2);
+}
+
+.audience-card.success:hover {
+    border-color: var(--accent-teal);
+}
+
+.audience-card.info {
+    border-color: rgba(244, 162, 97, 0.2);
+}
+
+.audience-card.info:hover {
+    border-color: var(--accent-gold);
+}
+
+.audience-card.warning {
+    border-color: rgba(244, 162, 97, 0.2);
+}
+
+.audience-card.warning:hover {
+    border-color: #E76F51;
+}
+
+.audience-card.danger {
+    border-color: rgba(91, 58, 41, 0.2);
+}
+
+.audience-card.danger:hover {
+    border-color: var(--primary-brown);
+}
+
+/* Card Header */
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(91, 58, 41, 0.1);
+}
+
+.card-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    transition: transform var(--transition-base);
+}
+
+.audience-card:hover .card-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.success .card-icon {
+    background: rgba(46, 196, 199, 0.15);
+    color: var(--accent-teal);
+}
+
+.info .card-icon {
+    background: rgba(244, 162, 97, 0.15);
+    color: var(--accent-gold);
+}
+
+.warning .card-icon {
+    background: rgba(231, 111, 81, 0.15);
+    color: #E76F51;
+}
+
+.danger .card-icon {
+    background: rgba(91, 58, 41, 0.15);
+    color: var(--primary-brown);
+}
+
+.card-header h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin: 0;
+}
+
+/* Audience List */
+.audience-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.audience-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 16px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    padding: 12px;
+    border-radius: 10px;
+    transition: var(--transition-base);
+}
+
+.audience-list li:hover {
+    background: rgba(46, 196, 199, 0.05);
+    transform: translateX(5px);
+}
+
+.audience-list li i {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.success .audience-list li i {
+    background: rgba(46, 196, 199, 0.15);
+    color: var(--accent-teal);
+}
+
+.info .audience-list li i {
+    background: rgba(244, 162, 97, 0.15);
+    color: var(--accent-gold);
+}
+
+.warning .audience-list li i {
+    background: rgba(231, 111, 81, 0.15);
+    color: #E76F51;
+}
+
+.danger .audience-list li i {
+    background: rgba(91, 58, 41, 0.15);
+    color: var(--primary-brown);
+}
+
+/* Muted Items */
+.audience-list.muted li {
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
+.audience-list.muted li:hover {
+    opacity: 0.8;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 992px) {
+    .audience-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .audience-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .audience-card {
+        padding: 35px 30px;
+    }
+
+    .card-header h3 {
+        font-size: 22px;
+    }
+
+    .audience-list li {
+        font-size: 15px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .audience-card {
+        padding: 30px 25px;
+    }
+
+    .card-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 22px;
+    }
+
+    .card-header h3 {
+        font-size: 20px;
+    }
+
+    .audience-list li {
+        font-size: 14px;
+    }
+}
