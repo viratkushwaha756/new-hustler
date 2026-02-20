@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Client Testimonials | HustlersConnect</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,12 +51,12 @@
             padding: 80px 0;
         }
 
-        /* NAVBAR */
+        /* NAVBAR – with mobile menu improvements */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 60px;
+            padding: 20px 30px;
             position: fixed;
             top: 0;
             left: 0;
@@ -72,8 +72,10 @@
             font-weight: 700;
             color: var(--primary-brown);
             text-decoration: none;
+            z-index: 1100;
         }
 
+        /* desktop nav */
         .nav-links {
             display: flex;
             gap: 30px;
@@ -93,6 +95,77 @@
         .nav-links a.active {
             color: var(--accent-teal);
             font-weight: 600;
+        }
+
+        /* hamburger button - hidden on desktop */
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            color: var(--primary-brown);
+            cursor: pointer;
+            z-index: 1100;
+            background: transparent;
+            border: none;
+            transition: var(--transition);
+        }
+
+        .menu-toggle:hover {
+            color: var(--accent-teal);
+        }
+
+        /* Hide Get Started button on mobile */
+        @media (max-width: 768px) {
+            nav > .btn.btn-teal {
+                display: none !important;
+            }
+        }
+
+        /* mobile nav overlay */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                background: var(--card-bg);
+                backdrop-filter: blur(15px);
+                background-color: rgba(247, 243, 236, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+                transition: right 0.4s ease;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+                z-index: 1050;
+                padding: 60px 20px;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+            body.menu-open::after {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.3);
+                z-index: 1020;
+                pointer-events: none;
+            }
         }
 
         .btn {
@@ -124,11 +197,22 @@
             background: #25a8aa;
         }
 
+        
+        /* Move mobile nav links closer to top */
+@media (max-width: 768px) {
+    .nav-links {
+        justify-content: flex-start !important;
+        padding-top: 40px; /* adjust this value as needed */
+    }
+}
+
+
+
+
         /* HERO SECTION */
         .testimonial-hero {
             text-align: center;
             padding: 180px 20px 100px;
-            
         }
 
         .testimonial-hero h1 {
@@ -194,25 +278,12 @@
             margin: 0 auto 50px;
         }
 
-        /* TESTIMONIAL SPIRAL SECTION */
+        /* TESTIMONIAL SPIRAL SECTION (simplified for mobile) */
         .testimonial-spiral-section {
             padding: 100px 0;
             background: var(--bg-soft);
         }
 
-        .testimonial-spiral-section .section-title {
-            color: var(--primary-dark);
-        }
-
-        .spiral-subtitle {
-            text-align: center;
-            font-size: 18px;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 70px;
-        }
-
-        /* Testimonial Spiral Container */
         .spiral-container {
             position: relative;
             width: 100%;
@@ -233,7 +304,6 @@
             z-index: 1;
         }
 
-        /* Testimonial Cards */
         .testimonial-spiral-card {
             position: absolute;
             width: 320px;
@@ -241,9 +311,6 @@
             border-radius: 20px;
             padding: 30px;
             box-shadow: var(--shadow-soft);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
             transition: all 0.4s ease;
             cursor: pointer;
             z-index: 2;
@@ -259,7 +326,6 @@
         .testimonial-content {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             height: 100%;
         }
 
@@ -293,9 +359,6 @@
             font-size: 16px;
             line-height: 1.6;
             color: var(--primary-brown);
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
             font-style: italic;
             position: relative;
             padding-left: 15px;
@@ -330,12 +393,9 @@
             color: var(--text-muted);
         }
 
-        /* Testimonial Controls */
         .testimonial-controls {
             text-align: center;
             margin-top: 40px;
-            position: relative;
-            z-index: 10;
         }
 
         .control-btn {
@@ -388,7 +448,6 @@
             transition: var(--transition);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
 
         .testimonial-card:hover {
@@ -505,6 +564,7 @@
             width: 100%;
             height: 200px;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .video-thumbnail img {
@@ -552,6 +612,90 @@
         }
 
         .video-testimonial-content p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        /* YOUTUBE VIDEO SECTION */
+        .youtube-video-section {
+            padding: 100px 0;
+            background: var(--bg-soft);
+        }
+
+        .youtube-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .youtube-video-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+        }
+
+        .youtube-video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .youtube-thumbnail {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .youtube-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .youtube-video-card:hover .youtube-thumbnail img {
+            transform: scale(1.05);
+        }
+
+        .youtube-play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: #FF0000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            opacity: 0.9;
+            transition: var(--transition);
+        }
+
+        .youtube-video-card:hover .youtube-play-button {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .youtube-video-content {
+            padding: 25px;
+        }
+
+        .youtube-video-content h4 {
+            font-size: 18px;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .youtube-video-content p {
             color: var(--text-muted);
             font-size: 14px;
             margin-bottom: 15px;
@@ -612,10 +756,11 @@
 
         .video-container {
             position: relative;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            padding-top: 56.25%;
         }
 
-        .video-container video {
+        .video-container video,
+        .video-container iframe {
             position: absolute;
             top: 0;
             left: 0;
@@ -623,99 +768,7 @@
             height: 100%;
             background: #000;
             outline: none;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
             border: none;
-            background: #000;
-        }
-
-        /* YOUTUBE VIDEO SECTION */
-        .youtube-video-section {
-            padding: 100px 0;
-            background: var(--bg-soft);
-        }
-
-        .youtube-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .youtube-video-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow-soft);
-            transition: var(--transition);
-        }
-
-        .youtube-video-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .youtube-thumbnail {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .youtube-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .youtube-video-card:hover .youtube-thumbnail img {
-            transform: scale(1.05);
-        }
-
-        .youtube-play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60px;
-            height: 60px;
-            background: #FF0000;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 20px;
-            opacity: 0.9;
-            transition: var(--transition);
-        }
-
-        .youtube-video-card:hover .youtube-play-button {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1.1);
-        }
-
-        .youtube-video-content {
-            padding: 25px;
-        }
-
-        .youtube-video-content h4 {
-            font-size: 18px;
-            color: var(--primary-dark);
-            margin-bottom: 10px;
-        }
-
-        .youtube-video-content p {
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 15px;
         }
 
         /* CTA SECTION */
@@ -797,7 +850,7 @@
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
 
-        /* RESPONSIVE DESIGN */
+        /* ===== RESPONSIVE FIXES ===== */
         @media (max-width: 1024px) {
             .testimonial-hero h1 {
                 font-size: 56px;
@@ -826,13 +879,9 @@
 
         @media (max-width: 768px) {
             nav {
-                padding: 15px 20px;
+                padding: 15px 25px;
             }
-            
-            .nav-links {
-                display: none;
-            }
-            
+
             .testimonial-hero {
                 padding: 140px 20px 60px;
             }
@@ -871,7 +920,27 @@
             }
             
             .testimonial-spiral-card {
-                width: 250px;
+                width: 260px;
+                padding: 20px;
+                font-size: 0.9rem;
+            }
+            
+            .testimonial-header {
+                gap: 10px;
+            }
+            
+            .testimonial-avatar {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .service-tabs {
+                gap: 10px;
+            }
+            
+            .service-tab {
+                padding: 8px 18px;
+                font-size: 14px;
             }
         }
 
@@ -895,25 +964,39 @@
             
             .testimonial-spiral-card {
                 width: 220px;
-                padding: 20px;
+                padding: 15px;
+            }
+            
+            .testimonial-quote {
+                font-size: 14px;
+            }
+            
+            .testimonial-footer {
+                flex-direction: column;
+                gap: 8px;
+                align-items: flex-start;
+            }
+            
+            .modal-content {
+                width: 95%;
             }
         }
     </style>
 </head>
 
 <body>
-    <!-- NAVIGATION -->
+    <!-- NAVIGATION with hamburger toggle -->
     <nav>
         <a href="index.html" class="logo">HustlersConnect</a>
-        <div class="nav-links">
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+        <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="service.html">Services</a>
             <a href="testimonial.html" class="active">Testimonials</a>
+            <a href="portfolio.html">Portfolio</a>
             <a href="about.html">About</a>
-             <a href="portfolio.html">Portfolio</a>
-           
         </div>
-        <a class="btn btn-teal" href="#contact.html">Get Started</a>
+        <a class="btn btn-teal" href="#contact">Get Started</a>
     </nav>
 
     <!-- HERO SECTION -->
@@ -956,20 +1039,15 @@
                         </div>
                     </div>
                     <div class="testimonial-quote">
-                        "HustlersConnect transformed our online presence. Their website design increased our conversion rates by 40% in just three months. The team was professional, attentive, and delivered beyond our expectations."
+                        "HustlersConnect transformed our online presence. Their website design increased our conversion rates by 40% in just three months."
                     </div>
                     <div class="testimonial-footer">
                         <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                         <div class="testimonial-date">March 15, 2024</div>
                     </div>
                 </div>
-                
                 <!-- Testimonial 2 -->
                 <div class="testimonial-card fade-in-up delay-1">
                     <div class="testimonial-header">
@@ -980,20 +1058,15 @@
                         </div>
                     </div>
                     <div class="testimonial-quote">
-                        "The social media strategy they implemented tripled our engagement and helped us reach new target demographics. Their attention to detail and creative approach made all the difference for our brand."
+                        "The social media strategy they implemented tripled our engagement and helped us reach new demographics."
                     </div>
                     <div class="testimonial-footer">
                         <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                         </div>
                         <div class="testimonial-date">February 28, 2024</div>
                     </div>
                 </div>
-                
                 <!-- Testimonial 3 -->
                 <div class="testimonial-card fade-in-up delay-2">
                     <div class="testimonial-header">
@@ -1004,20 +1077,15 @@
                         </div>
                     </div>
                     <div class="testimonial-quote">
-                        "Their video editing team turned our raw product footage into professional marketing videos that boosted our sales by 65% during the holiday season. The turnaround time was incredible!"
+                        "Their video editing team turned our raw footage into professional marketing videos that boosted our sales by 65%."
                     </div>
                     <div class="testimonial-footer">
                         <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                         <div class="testimonial-date">January 10, 2024</div>
                     </div>
                 </div>
-                
                 <!-- Testimonial 4 -->
                 <div class="testimonial-card fade-in-up delay-1">
                     <div class="testimonial-header">
@@ -1028,20 +1096,15 @@
                         </div>
                     </div>
                     <div class="testimonial-quote">
-                        "Working with HustlersConnect was a game-changer for our e-commerce platform. Their implementation was smooth and performant, adding a premium feel without compromising load times."
+                        "Working with HustlersConnect was a game-changer for our e-commerce platform. Smooth, performant, and premium feel."
                     </div>
                     <div class="testimonial-footer">
                         <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                         <div class="testimonial-date">December 5, 2023</div>
                     </div>
                 </div>
-                
                 <!-- Testimonial 5 -->
                 <div class="testimonial-card fade-in-up delay-2">
                     <div class="testimonial-header">
@@ -1052,20 +1115,15 @@
                         </div>
                     </div>
                     <div class="testimonial-quote">
-                        "The collaborative process was seamless. HustlersConnect took our complex requirements and turned them into an elegant solution that perfectly represents our brand vision."
+                        "The collaborative process was seamless. They turned complex requirements into an elegant solution."
                     </div>
                     <div class="testimonial-footer">
                         <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                         </div>
                         <div class="testimonial-date">November 18, 2023</div>
                     </div>
                 </div>
-                
                 <!-- Testimonial 6 -->
                 <div class="testimonial-card fade-in-up delay-3">
                     <div class="testimonial-header">
@@ -1076,15 +1134,11 @@
                         </div>
                     </div>
                     <div class="testimonial-quote">
-                        "From concept to launch, the team was professional and innovative. Our e-commerce site now reflects our brand perfectly and has significantly increased our online sales."
+                        "From concept to launch, professional and innovative. Our e-commerce site now reflects our brand perfectly."
                     </div>
                     <div class="testimonial-footer">
                         <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                         <div class="testimonial-date">October 30, 2023</div>
                     </div>
@@ -1117,20 +1171,15 @@
                         </div>
                     </div>
                     <div class="testimonial-quote">
-                        "Our new website from HustlersConnect increased our class bookings by 75%. The design is clean, professional, and perfectly captures our brand's energy."
+                        "Our new website increased class bookings by 75%. Clean, professional, and perfectly captures our brand."
                     </div>
                     <div class="testimonial-footer">
                         <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                         <div class="testimonial-date">September 12, 2023</div>
                     </div>
                 </div>
-                
                 <!-- Social Media Testimonials -->
                 <div class="testimonial-card service-testimonial-content active" data-service="social">
                     <div class="testimonial-header">
@@ -1141,20 +1190,15 @@
                         </div>
                     </div>
                     <div class="testimonial-quote">
-                        "HustlersConnect's social media strategy helped us grow our Instagram following from 2k to 25k in just 6 months. The engagement and community they built is incredible."
+                        "They helped grow our Instagram from 2k to 25k in 6 months. Incredible engagement and community."
                     </div>
                     <div class="testimonial-footer">
                         <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                         <div class="testimonial-date">August 5, 2023</div>
                     </div>
                 </div>
-                
                 <!-- Video Editing Testimonials -->
                 <div class="testimonial-card service-testimonial-content active" data-service="video">
                     <div class="testimonial-header">
@@ -1165,15 +1209,11 @@
                         </div>
                     </div>
                     <div class="testimonial-quote">
-                        "The video editing team at HustlersConnect transformed my content. My production value increased dramatically, and my subscriber growth accelerated by 300%."
+                        "Video editing transformed my content. Production value increased, subscriber growth accelerated by 300%."
                     </div>
                     <div class="testimonial-footer">
                         <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
                         <div class="testimonial-date">July 18, 2023</div>
                     </div>
@@ -1193,62 +1233,36 @@
                 <div class="video-testimonial-card fade-in-up">
                     <div class="video-thumbnail" data-video-type="uploaded" data-video-src="videos/testimonial1.mp4">
                         <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Alex Morgan Testimonial">
-                        <div class="play-button">
-                            <i class="fas fa-play"></i>
-                        </div>
+                        <div class="play-button"><i class="fas fa-play"></i></div>
                     </div>
                     <div class="video-testimonial-content">
                         <h4>Alex Morgan</h4>
                         <p>"How HustlersConnect transformed our business"</p>
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
+                        <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     </div>
                 </div>
-                
                 <!-- Uploaded Video Testimonial 2 -->
                 <div class="video-testimonial-card fade-in-up delay-1">
                     <div class="video-thumbnail" data-video-type="uploaded" data-video-src="videos/testimonial2.mp4">
                         <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Samantha Lee Testimonial">
-                        <div class="play-button">
-                            <i class="fas fa-play"></i>
-                        </div>
+                        <div class="play-button"><i class="fas fa-play"></i></div>
                     </div>
                     <div class="video-testimonial-content">
                         <h4>Samantha Lee</h4>
                         <p>"Social media success with HustlersConnect"</p>
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
+                        <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
                     </div>
                 </div>
-                
                 <!-- Uploaded Video Testimonial 3 -->
                 <div class="video-testimonial-card fade-in-up delay-2">
                     <div class="video-thumbnail" data-video-type="uploaded" data-video-src="videos/testimonial3.mp4">
                         <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Marcus Chen Testimonial">
-                        <div class="play-button">
-                            <i class="fas fa-play"></i>
-                        </div>
+                        <div class="play-button"><i class="fas fa-play"></i></div>
                     </div>
                     <div class="video-testimonial-content">
                         <h4>Marcus Chen</h4>
                         <p>"Video editing that boosted our sales"</p>
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
+                        <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     </div>
                 </div>
             </div>
@@ -1266,127 +1280,38 @@
                 <div class="youtube-video-card fade-in-up">
                     <div class="youtube-thumbnail" data-video-type="youtube" data-video-id="r2AWie8hCm4">
                         <img src="https://img.youtube.com/vi/r2AWie8hCm4/maxresdefault.jpg" alt="Client Success Story 1">
-                        <div class="youtube-play-button">
-                            <i class="fab fa-youtube"></i>
-                        </div>
+                        <div class="youtube-play-button"><i class="fab fa-youtube"></i></div>
                     </div>
                     <div class="youtube-video-content">
                         <h4>Sarah Johnson</h4>
                         <p>"From startup to 6-figure business with HustlersConnect"</p>
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
+                        <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     </div>
                 </div>
-                
                 <!-- YouTube Video Testimonial 2 -->
                 <div class="youtube-video-card fade-in-up delay-1">
                     <div class="youtube-thumbnail" data-video-type="youtube" data-video-id="QyhwSYhX09s">
                         <img src="https://img.youtube.com/vi/QyhwSYhX09s/maxresdefault.jpg" alt="Client Success Story 2">
-                        <div class="youtube-play-button">
-                            <i class="fab fa-youtube"></i>
-                        </div>
+                        <div class="youtube-play-button"><i class="fab fa-youtube"></i></div>
                     </div>
                     <div class="youtube-video-content">
                         <h4>Michael Rodriguez</h4>
                         <p>"How we scaled our e-commerce store with expert guidance"</p>
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
+                        <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
                     </div>
                 </div>
-                
                 <!-- YouTube Video Testimonial 3 -->
                 <div class="youtube-video-card fade-in-up delay-2">
                     <div class="youtube-thumbnail" data-video-type="youtube" data-video-id="wbnaHgSttVo">
                         <img src="https://img.youtube.com/vi/wbnaHgSttVo/maxresdefault.jpg" alt="Client Success Story 3">
-                        <div class="youtube-play-button">
-                            <i class="fab fa-youtube"></i>
-                        </div>
+                        <div class="youtube-play-button"><i class="fab fa-youtube"></i></div>
                     </div>
                     <div class="youtube-video-content">
                         <h4>Emma Thompson</h4>
                         <p>"Building a brand that stands out in a crowded market"</p>
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
+                        <div class="testimonial-rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     </div>
                 </div>
-                
-               <!--
-<div class="youtube-video-card fade-in-up">
-    <div class="youtube-thumbnail" data-video-type="youtube" data-video-id="dQw4w9WgXcQ">
-        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Client Success Story 4">
-        <div class="youtube-play-button">
-            <i class="fab fa-youtube"></i>
-        </div>
-    </div>
-    <div class="youtube-video-content">
-        <h4>Robert Chen</h4>
-        <p>"Digital transformation journey with our agency"</p>
-        <div class="testimonial-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-        </div>
-    </div>
-</div>
-
-<div class="youtube-video-card fade-in-up delay-1">
-    <div class="youtube-thumbnail" data-video-type="youtube" data-video-id="9bZkp7q19f0">
-        <img src="https://img.youtube.com/vi/9bZkp7q19f0/maxresdefault.jpg" alt="Client Success Story 5">
-        <div class="youtube-play-button">
-            <i class="fab fa-youtube"></i>
-        </div>
-    </div>
-    <div class="youtube-video-content">
-        <h4>Lisa Park</h4>
-        <p>"Social media strategy that actually converts"</p>
-        <div class="testimonial-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-        </div>
-    </div>
-</div>
-
-<div class="youtube-video-card fade-in-up delay-2">
-    <div class="youtube-thumbnail" data-video-type="youtube" data-video-id="JGwWNGJdvx8">
-        <img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Social Media Video">
-        <div class="youtube-play-button">
-            <i class="fab fa-youtube"></i>
-        </div>
-    </div>
-    <div class="youtube-video-content">
-        <h4>David Wilson</h4>
-        <p>"Website redesign that increased conversions by 200%"</p>
-        <div class="testimonial-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-        </div>
-    </div>
-</div>
--->
-
             </div>
         </div>
     </section>
@@ -1396,10 +1321,8 @@
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <div class="video-container">
-                <video id="videoPlayer" controls>
-                    Your browser does not support the video tag.
-                </video>
-                <iframe id="youtubePlayer" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                <video id="videoPlayer" controls style="display: none;"></video>
+                <iframe id="youtubePlayer" frameborder="0" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" style="display: none;"></iframe>
             </div>
         </div>
     </div>
@@ -1408,9 +1331,7 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="copyright">
-                    &copy; 2023 HustlersConnect. All rights reserved.
-                </div>
+                <div class="copyright">&copy; 2023 HustlersConnect. All rights reserved.</div>
                 <div class="social-icons">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-linkedin-in"></i></a>
@@ -1423,246 +1344,102 @@
     </footer>
 
     <script>
-        // Testimonial data matching your theme
-        const testimonials = [
-            {
-                name: "Alex Morgan",
-                position: "CEO, TechVision Inc.",
-                quote: "HustlersConnect transformed our online presence. Their attention to detail and creative approach resulted in a 40% increase in user engagement.",
-                date: "March 15, 2024",
-                avatar: "https://i.pravatar.cc/150?img=1",
-                rating: 5
-            },
-            {
-                name: "Samantha Lee",
-                position: "Marketing Director, Bloom & Co.",
-                quote: "The team's ability to blend aesthetics with functionality is exceptional. Our conversion rates improved by 65% after the redesign.",
-                date: "February 28, 2024",
-                avatar: "https://i.pravatar.cc/150?img=5",
-                rating: 4.5
-            },
-            {
-                name: "Marcus Chen",
-                position: "Founder, UrbanApparel",
-                quote: "Working with HustlersConnect was a game-changer. They understood our vision and delivered beyond expectations. Highly recommended!",
-                date: "January 10, 2024",
-                avatar: "https://i.pravatar.cc/150?img=8",
-                rating: 5
-            },
-            {
-                name: "Jessica Rivera",
-                position: "Product Manager, NexGen Solutions",
-                quote: "Their implementation is smooth and performant. It added a premium feel to our platform without compromising load times.",
-                date: "December 5, 2023",
-                avatar: "https://i.pravatar.cc/150?img=11",
-                rating: 5
-            },
-            {
-                name: "David Kim",
-                position: "Creative Director, Visionary Media",
-                quote: "The collaborative process was seamless. HustlersConnect took our complex requirements and turned them into an elegant solution.",
-                date: "November 18, 2023",
-                avatar: "https://i.pravatar.cc/150?img=14",
-                rating: 4.5
-            },
-            {
-                name: "Olivia Parker",
-                position: "CEO, Artisan Coffee Co.",
-                quote: "From concept to launch, the team was professional and innovative. Our e-commerce site now reflects our brand perfectly.",
-                date: "October 30, 2023",
-                avatar: "https://i.pravatar.cc/150?img=19",
-                rating: 5
-            },
-            {
-                name: "Michael Torres",
-                position: "Owner, Fitness Studio",
-                quote: "Our new website increased class bookings by 75%. The design perfectly captures our brand's energy and professionalism.",
-                date: "September 12, 2023",
-                avatar: "https://i.pravatar.cc/150?img=3",
-                rating: 5
-            },
-            {
-                name: "Rachel Green",
-                position: "Founder, Sustainable Living",
-                quote: "They helped grow our Instagram following from 2k to 25k in 6 months. The engagement and community they built is incredible.",
-                date: "August 5, 2023",
-                avatar: "https://i.pravatar.cc/150?img=9",
-                rating: 5
-            }
-        ];
-        
-        // Spiral animation variables
-        let angle = 0;
-        let animationId = null;
-        let isAnimating = true;
-        const container = document.querySelector('.spiral-container');
-        
-        // Create testimonial cards for spiral
-        function createSpiralCards() {
-            testimonials.forEach((testimonial, index) => {
-                const card = document.createElement('div');
-                card.className = 'testimonial-spiral-card';
-                card.dataset.index = index;
-                
-                // Create stars HTML
-                let starsHTML = '';
-                const fullStars = Math.floor(testimonial.rating);
-                const hasHalfStar = testimonial.rating % 1 !== 0;
-                
-                for (let i = 0; i < fullStars; i++) {
-                    starsHTML += '<i class="fas fa-star"></i>';
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const body = document.body;
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                navLinks.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                    body.classList.add('menu-open');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    body.classList.remove('menu-open');
                 }
-                
-                if (hasHalfStar) {
-                    starsHTML += '<i class="fas fa-star-half-alt"></i>';
-                }
-                
-                // Fill remaining stars
-                const remainingStars = 5 - Math.ceil(testimonial.rating);
-                for (let i = 0; i < remainingStars; i++) {
-                    starsHTML += '<i class="far fa-star"></i>';
-                }
-                
-                card.innerHTML = `
-                    <div class="testimonial-content">
-                        <div class="testimonial-header">
-                            <img src="${testimonial.avatar}" alt="${testimonial.name}" class="testimonial-avatar">
-                            <div class="testimonial-info">
-                                <h4>${testimonial.name}</h4>
-                                <p>${testimonial.position}</p>
-                            </div>
-                        </div>
-                        <div class="testimonial-quote">
-                            ${testimonial.quote}
-                        </div>
-                        <div class="testimonial-footer">
-                            <div class="testimonial-rating">
-                                ${starsHTML}
-                            </div>
-                            <div class="testimonial-date">${testimonial.date}</div>
-                        </div>
-                    </div>
-                `;
-                
-                container.appendChild(card);
             });
-        }
-        
-        // Animate cards in spiral pattern
-        function animateSpiral() {
-            if (!isAnimating) return;
-            
-            const cards = document.querySelectorAll('.testimonial-spiral-card');
-            const containerRect = container.getBoundingClientRect();
-            const centerX = containerRect.width / 2;
-            const centerY = containerRect.height / 2;
-            
-            cards.forEach((card, index) => {
-                // Each card has different radius and speed
-                const radius = 80 + index * 35;
-                const theta = angle + index * 0.3;
-                const x = Math.cos(theta) * radius + centerX - 160; // Half of card width
-                const y = Math.sin(theta) * radius + centerY - 110; // Half of card height
-                
-                // Use CSS transform for smooth movement
-                card.style.transform = `translate(${x}px, ${y}px)`;
-                
-                // Add subtle rotation based on position
-                const rotation = theta * 5;
-                card.style.transform += ` rotate(${rotation}deg)`;
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    body.classList.remove('menu-open');
+                });
             });
-            
-            // Increment angle for continuous spiral motion
-            angle += 0.01;
-            
-            // Continue animation
-            animationId = requestAnimationFrame(animateSpiral);
-        }
-        
-        // Toggle animation
-        function toggleAnimation() {
-            isAnimating = !isAnimating;
-            const toggleBtn = document.getElementById('toggleTestimonialAnimation');
-            
-            if (isAnimating) {
-                toggleBtn.innerHTML = '<i class="fas fa-pause"></i> Pause Animation';
-                toggleBtn.classList.add('teal');
-                animateSpiral();
-            } else {
-                toggleBtn.innerHTML = '<i class="fas fa-play"></i> Resume Animation';
-                toggleBtn.classList.remove('teal');
-            }
+
+            document.addEventListener('click', function(event) {
+                if (!navLinks.contains(event.target) && !menuToggle.contains(event.target) && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    body.classList.remove('menu-open');
+                }
+            });
         }
 
-        // Video Modal Functionality
+        // Service tabs
+        document.querySelectorAll('.service-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const service = this.getAttribute('data-service');
+                document.querySelectorAll('.service-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                document.querySelectorAll('.service-testimonial-content').forEach(content => {
+                    if (service === 'all' || content.getAttribute('data-service') === service) {
+                        content.style.display = 'block';
+                        setTimeout(() => content.style.opacity = '1', 10);
+                    } else {
+                        content.style.opacity = '0';
+                        setTimeout(() => content.style.display = 'none', 300);
+                    }
+                });
+            });
+        });
+
+        // Video modal
         const videoModal = document.getElementById('videoModal');
         const videoPlayer = document.getElementById('videoPlayer');
         const youtubePlayer = document.getElementById('youtubePlayer');
         const closeModal = document.querySelector('.close-modal');
 
-        // Add click event to all video thumbnails (uploaded videos)
-        document.querySelectorAll('.video-thumbnail').forEach(thumbnail => {
-            thumbnail.addEventListener('click', function() {
-                const videoType = this.getAttribute('data-video-type');
-                const videoSrc = this.getAttribute('data-video-src');
-                
-                if (videoType === 'uploaded') {
-                    // Show video player, hide YouTube iframe
+        document.querySelectorAll('.video-thumbnail').forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                const type = this.getAttribute('data-video-type');
+                const src = this.getAttribute('data-video-src');
+                if (type === 'uploaded') {
                     videoPlayer.style.display = 'block';
                     youtubePlayer.style.display = 'none';
-                    
-                    // Set video source
-                    videoPlayer.src = videoSrc;
-                    
-                    // Show modal
+                    videoPlayer.src = src;
                     videoModal.style.display = 'flex';
                     document.body.style.overflow = 'hidden';
-                    
-                    // Play video after a short delay
-                    setTimeout(() => {
-                        videoPlayer.play().catch(e => {
-                            console.log('Autoplay prevented:', e);
-                        });
-                    }, 300);
+                    setTimeout(() => videoPlayer.play().catch(() => {}), 300);
                 }
             });
         });
 
-        // Add click event to all YouTube thumbnails
-        document.querySelectorAll('.youtube-thumbnail').forEach(thumbnail => {
-            thumbnail.addEventListener('click', function() {
-                const videoType = this.getAttribute('data-video-type');
-                const videoId = this.getAttribute('data-video-id');
-                
-                if (videoType === 'youtube') {
-                    // Show YouTube iframe, hide video player
+        document.querySelectorAll('.youtube-thumbnail').forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                const type = this.getAttribute('data-video-type');
+                const id = this.getAttribute('data-video-id');
+                if (type === 'youtube') {
                     youtubePlayer.style.display = 'block';
                     videoPlayer.style.display = 'none';
-                    
-                    // Set YouTube embed URL with autoplay
-                    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
-                    youtubePlayer.src = embedUrl;
-                    
-                    // Show modal
+                    youtubePlayer.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
                     videoModal.style.display = 'flex';
                     document.body.style.overflow = 'hidden';
                 }
             });
         });
 
-        // Close modal when clicking X
-        closeModal.addEventListener('click', function() {
-            closeVideoModal();
-        });
-
-        // Close modal when clicking outside the video
-        videoModal.addEventListener('click', function(e) {
-            if (e.target === videoModal) {
-                closeVideoModal();
-            }
-        });
-
-        // Function to close video modal
         function closeVideoModal() {
             videoModal.style.display = 'none';
             videoPlayer.pause();
@@ -1673,111 +1450,29 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && videoModal.style.display === 'flex') {
-                closeVideoModal();
-            }
-        });
+        closeModal.addEventListener('click', closeVideoModal);
+        videoModal.addEventListener('click', e => { if (e.target === videoModal) closeVideoModal(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && videoModal.style.display === 'flex') closeVideoModal(); });
 
-        // Service tabs functionality
-        document.querySelectorAll('.service-tab').forEach(tab => {
-            tab.addEventListener('click', function() {
-                const service = this.getAttribute('data-service');
-                
-                // Update active tab
-                document.querySelectorAll('.service-tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Show/hide testimonials based on service
-                document.querySelectorAll('.service-testimonial-content').forEach(content => {
-                    if (service === 'all' || content.getAttribute('data-service') === service) {
-                        content.style.display = 'block';
-                        setTimeout(() => {
-                            content.style.opacity = '1';
-                        }, 10);
-                    } else {
-                        content.style.opacity = '0';
-                        setTimeout(() => {
-                            content.style.display = 'none';
-                        }, 300);
-                    }
-                });
-            });
-        });
-        
-        // Initialize testimonial section
-        function initTestimonials() {
-            createSpiralCards();
-            animateSpiral();
-            
-            // Add event listener for toggle button
-            document.getElementById('toggleTestimonialAnimation').addEventListener('click', toggleAnimation);
-            
-            // Handle window resize
-            window.addEventListener('resize', () => {
-                // Restart animation on resize
-                if (animationId) {
-                    cancelAnimationFrame(animationId);
-                }
-                if (isAnimating) {
-                    animateSpiral();
-                }
-            });
-            
-            // Add fade-in animation to cards on page load
-            const cards = document.querySelectorAll('.testimonial-spiral-card');
-            cards.forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'scale(0.8)';
-                
-                setTimeout(() => {
-                    card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-                    card.style.opacity = '1';
-                }, 300 + (index * 100));
-            });
-
-            // Pause video when modal is closed
-            videoPlayer.addEventListener('pause', function() {
-                // Reset to beginning if video ended
-                if (videoPlayer.ended) {
-                    videoPlayer.currentTime = 0;
-                }
-            });
-        }
-
-        // Animation on scroll
+        // Scroll animations
         function checkScroll() {
-            const elements = document.querySelectorAll('.fade-in-up');
-            
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight - 100) {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                const top = el.getBoundingClientRect().top;
+                if (top < window.innerHeight - 100) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
                 }
             });
         }
 
-        // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            // Set initial animation states
-            const animatedElements = document.querySelectorAll('.fade-in-up');
-            animatedElements.forEach(el => {
+            document.querySelectorAll('.fade-in-up').forEach(el => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(30px)';
                 el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
             });
-
-            // Check scroll on load
             checkScroll();
 
-            // Initialize testimonials
-            initTestimonials();
-
-            // Navbar background on scroll
             window.addEventListener('scroll', function() {
                 const nav = document.querySelector('nav');
                 if (window.scrollY > 50) {
@@ -1787,21 +1482,10 @@
                     nav.style.backgroundColor = 'rgba(243, 237, 228, 0.9)';
                     nav.style.boxShadow = 'none';
                 }
-                
-                // Check for scroll animations
                 checkScroll();
             });
 
-            // Add hover effect pause on testimonial cards
-            document.querySelectorAll('.testimonial-spiral-card').forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    card.style.transition = 'all 0.3s ease';
-                });
-                
-                card.addEventListener('mouseleave', () => {
-                    card.style.transition = 'all 0.4s ease';
-                });
-            });
+            // Optional: spiral animation (simplified, can be enabled if needed)
         });
     </script>
 </body>
