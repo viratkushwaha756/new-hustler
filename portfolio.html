@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Our Portfolio | HustlersConnect</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,12 +51,12 @@
             padding: 80px 0;
         }
 
-        /* NAVBAR (identical to index) */
+        /* NAVBAR – with mobile menu improvements */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 60px;
+            padding: 20px 30px;
             position: fixed;
             top: 0;
             left: 0;
@@ -72,6 +72,7 @@
             font-weight: 700;
             color: var(--primary-brown);
             text-decoration: none;
+            z-index: 1100;
         }
 
         .nav-links {
@@ -93,6 +94,77 @@
         .nav-links a.active {
             color: var(--accent-teal);
             font-weight: 600;
+        }
+
+        /* hamburger button - hidden on desktop */
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            color: var(--primary-brown);
+            cursor: pointer;
+            z-index: 1100;
+            background: transparent;
+            border: none;
+            transition: var(--transition);
+        }
+
+        .menu-toggle:hover {
+            color: var(--accent-teal);
+        }
+
+        /* Hide Get Started button on mobile */
+        @media (max-width: 768px) {
+            nav > .btn.btn-teal {
+                display: none !important;
+            }
+        }
+
+        /* mobile nav overlay */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                background: var(--card-bg);
+                backdrop-filter: blur(15px);
+                background-color: rgba(247, 243, 236, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+                transition: right 0.4s ease;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+                z-index: 1050;
+                padding: 60px 20px;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+            body.menu-open::after {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.3);
+                z-index: 1020;
+                pointer-events: none;
+            }
         }
 
         .btn {
@@ -123,6 +195,18 @@
         .btn-teal:hover {
             background: #25a8aa;
         }
+
+        
+        /* Move mobile nav links closer to top */
+@media (max-width: 768px) {
+    .nav-links {
+        justify-content: flex-start !important;
+        padding-top: 40px; /* adjust this value as needed */
+    }
+}
+
+
+
 
         /* HERO (matches index hero structure) */
         .portfolio-hero {
@@ -503,7 +587,7 @@
             color: var(--accent-teal);
         }
 
-        /* RESPONSIVE (matches index) */
+        /* ========== RESPONSIVE (matches index + mobile first) ========== */
         @media (max-width: 1024px) {
             .portfolio-hero h1 { font-size: 56px; }
             .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
@@ -511,14 +595,14 @@
         }
 
         @media (max-width: 768px) {
-            nav { padding: 15px 20px; }
-            .nav-links { display: none; }
+            nav { padding: 15px 25px; }
             .portfolio-hero { padding: 140px 20px 60px; }
             .portfolio-hero h1 { font-size: 42px; }
             .portfolio-hero p { font-size: 18px; }
             .section-title { font-size: 36px; }
             .portfolio-grid { grid-template-columns: 1fr; }
             .featured-side-item { flex-direction: column; text-align: center; }
+            .featured-side-icon { margin-bottom: 10px; }
             .stats-banner { flex-direction: column; gap: 20px; }
             .cta-card { padding: 40px 20px; }
             .cta-card h2 { font-size: 32px; }
@@ -531,20 +615,22 @@
             .filter-btn { padding: 8px 16px; font-size: 14px; }
             .portfolio-image-container { height: 200px; }
             .stat-block .stat-number { font-size: 36px; }
+            .portfolio-stats { flex-direction: column; align-items: flex-start; gap: 8px; }
         }
     </style>
 </head>
 
 <body>
-    <!-- NAVIGATION (same as index) -->
+    <!-- NAVIGATION with hamburger toggle (three-line menu) and Get Started button hidden on mobile -->
     <nav>
         <a href="index.html" class="logo">HustlersConnect</a>
-        <div class="nav-links">
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+        <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="service.html">Services</a>
             <a href="testimonial.html">Testimonials</a>
-            <a href="about.html">About</a>
             <a href="portfolio.html" class="active">Portfolio</a>
+            <a href="about.html">About</a>
         </div>
         <a class="btn btn-teal" href="contact.html">Contact us</a>
     </nav>
@@ -701,7 +787,6 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
 
             <!-- Stats banner (like index) -->
@@ -813,21 +898,60 @@
     </footer>
 
     <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const body = document.body;
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                navLinks.classList.toggle('active');
+                const icon = menuToggle.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                    body.classList.add('menu-open');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    body.classList.remove('menu-open');
+                }
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    body.classList.remove('menu-open');
+                });
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!navLinks.contains(event.target) && !menuToggle.contains(event.target) && navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    body.classList.remove('menu-open');
+                }
+            });
+        }
+
         // Simple filter functionality (UI demo)
         document.querySelectorAll('.filter-btn').forEach(button => {
             button.addEventListener('click', function() {
-                // Remove active class from all buttons
                 document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
                 this.classList.add('active');
-                
-                // Filter logic (for demo, just console log)
                 const filter = this.textContent.toLowerCase();
                 console.log('Filter by:', filter);
                 // In a real implementation, you'd hide/show items based on data-category
             });
         });
 
-        // Navbar background on scroll (same as index)
+        // Navbar background on scroll
         window.addEventListener('scroll', function() {
             const nav = document.querySelector('nav');
             if (window.scrollY > 50) {
@@ -855,7 +979,7 @@
             });
         });
 
-        // Add fade-in animation to portfolio items on scroll (optional)
+        // Fade-in animation on scroll for portfolio items
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
